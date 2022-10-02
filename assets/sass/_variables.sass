@@ -1,0 +1,55 @@
+$font-path: "../fonts/"
+$prev-icon-path: "../images/icons/previous.svg"
+$next-icon-path: "../images/icons/double-arrow.svg"
+$never-icon-path: "../images/sitting.svg"
+
+html
+  --color-mode: "light"
+  --light: #ebebeb
+  --dark:  #0e0e0f
+  --haze: #c5c5c5
+  --bubble: rgb(36,36,38)
+  --accent: var(--haze)
+  --bg: var(--light)
+  --code-bg: var(--accent)
+  --overlay: var(--light)
+  --text: #111
+  --font: 'Metropolis', sans-serif
+  --border-color: #eee
+  --inline-color: #ff0055
+  --theme: #fd3b00
+  --ease: ease
+  --search-border-color: transparent
+
+  @mixin darkmode
+    --color-mode: "dark"
+    --theme: #ff6600
+    --bg: var(--dark)
+    --haze: #f5f5f5
+    --text: #eee
+    --accent: var(--bubble)
+    --overlay: var(--bubble)
+    --border-color: transparent
+    --search-bg: var(--accent)
+    --search-border-color: var(--accent)
+    *
+      box-shadow: none !important
+
+  &[data-mode="dark"]
+    @include darkmode
+    .color
+      &_choice
+        &::after
+          background-image: var(--moonIcon)
+
+  &.dark:not([data-mode="light"])
+    @media (prefers-color-scheme: dark)
+      @include darkmode
+
+%narrow
+  max-width: 750px
+  margin: 0 auto
+
+blockquote
+  + .highlight_wrap
+    margin-top: 2.25rem
